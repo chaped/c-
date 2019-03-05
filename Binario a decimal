@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+
+int main(){
+    int exp,digito;
+    double binario,decimal;
+
+    //std::cout<<"ingrese un numero binario";
+    std::cin>>binario;
+
+    exp=0;
+    decimal=0;
+
+    while(((int)(binario/10)!=0)){
+
+        digito=(int)binario%10;
+        decimal=decimal+digito*pow(2.0,exp);
+        exp++;
+        binario=(int)(binario/10);
+
+    }
+    decimal=decimal+binario * pow(2.0,exp);
+
+    std::cout<<decimal<<std::endl;
+    //system("pause");
+}
