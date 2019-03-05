@@ -1,0 +1,65 @@
+#include <iostream>
+
+void odds_reversed(int n, int * arr) {
+    int i=n*2-1;
+    int index=0;
+    while(i>=0){
+        if(i%2!=0){
+            arr[index]=i;
+            index+=1;
+            i--;
+        }else{
+            i--;
+        }
+    }
+}
+
+
+// Preparation code. Don't modify anything under this line!
+int* create_array(int arr_size) {
+    int *arr;
+
+    arr = new int[arr_size];
+    for(int i=0; i<arr_size; i++) {
+        arr[i] = 0;
+    }
+
+    return arr;
+}
+
+void decreate_array(int *arr) {
+    delete[] arr;
+}
+
+void print_array(int *arr, int arr_size) {
+    std::cout << "[";
+    for(int i=0; i<arr_size-1; i++) {
+        std::cout << arr[i] << ",";
+    }
+    if (arr_size > 0) {
+        std::cout << arr[arr_size-1];
+    }
+    std::cout << "]";
+}
+
+int main() {
+    int arr_size;
+    int *arr;
+
+    std::cin >> arr_size;
+    arr = create_array(arr_size);
+
+    std::cout << "Original array: ";
+    print_array(arr, arr_size);
+    std::cout << std::endl;
+
+    odds_reversed(arr_size, arr);
+
+    std::cout << "Modified array: ";
+    print_array(arr, arr_size);
+    std::cout << std::endl;
+
+    decreate_array(arr);
+
+    return 0;
+}
