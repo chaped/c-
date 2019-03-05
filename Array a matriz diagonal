@@ -1,0 +1,102 @@
+#include <iostream>
+
+void inverse_diagonal(int n, int *arr, int **mat) {
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<n; j++) {
+            if(i==j){
+                mat[i][j] = arr[i];
+            }else{
+                mat[i][j] = 0;
+            }
+        }
+    }
+}
+
+
+// Preparation code. Don't modify anything under this line!
+int** create_matrix(int n, int m) {
+    int **mat;
+
+    mat = new int*[n];
+    for(int i=0; i<n; i++) {
+        mat[i] = new int[m];
+        for(int j=0; j<m; j++) {
+            mat[i][j] = 0;
+        }
+    }
+
+    return mat;
+}
+
+void decreate_mat(int n, int **mat) {
+    for(int i=0; i<n; i++) {
+        delete[] mat[i];
+    }
+    delete[] mat;
+}
+
+int* create_array(int arr_size) {
+    int *arr;
+
+    arr = new int[arr_size];
+    for(int i=0; i<arr_size; i++) {
+      std::cin >> arr[i];
+    }
+
+    return arr;
+}
+
+void decreate_array(int *arr) {
+    delete[] arr;
+}
+
+void print_array(int n, int *arr) {
+    std::cout << "[";
+    for(int i=0; i<n-1; i++) {
+        std::cout << arr[i] << ",";
+    }
+    if (n > 0) {
+        std::cout << arr[n-1];
+    }
+    std::cout << "]";
+}
+
+void print_mat(int n, int m, int **mat) {
+    std::cout << "[ ";
+    for(int i=0; i<n-1; i++) {
+        if(i!=0) { std::cout << "  "; }
+        print_array(m, mat[i]);
+        std::cout << "," << std::endl;
+    }
+    std::cout << "  ";
+    print_array(m, mat[n-1]);
+    std::cout << " ]" << std::endl;
+}
+
+int main() {
+    int n;
+    int *arr;
+    int **mat;
+
+    std::cin >> n;
+    arr = create_array(n);
+    mat = create_matrix(n, n);
+
+    std::cout << "Original array:" << std::endl;
+    print_array(n, arr);
+    std::cout << std::endl << std::endl;
+
+    std::cout << "Original matrix:" << std::endl;
+    print_mat(n, n, mat);
+    std::cout << std::endl;
+
+    inverse_diagonal(n, arr, mat);
+
+    std::cout << "New matrix: " << std::endl;
+    print_mat(n, n, mat);
+
+    decreate_mat(n, mat);
+    decreate_array(arr);
+
+    return 0;
+}
