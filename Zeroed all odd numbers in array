@@ -1,0 +1,58 @@
+#include <iostream>
+
+void inverse_array(int arr_size, int *arr) {
+    for(int i=0;i<arr_size;i++){
+        if(arr[i]%2!=0){
+            arr[i]=0;
+        }
+    }
+}
+
+
+// Preparation code. Don't modify anything under this line!
+int* create_array(int arr_size) {
+    int *arr;
+
+    arr = new int[arr_size];
+    for(int i=0; i<arr_size; i++) {
+        std::cin >> arr[i];
+    }
+
+    return arr;
+}
+
+void decreate_array(int *arr) {
+    delete[] arr;
+}
+
+void print_array(int *arr, int arr_size) {
+    std::cout << "[";
+    for(int i=0; i<arr_size-1; i++) {
+        std::cout << arr[i] << ",";
+    }
+    std::cout << arr[arr_size-1] << "]";
+}
+
+int main() {
+    int arr_size;
+    int *arr;
+
+    std::cin >> arr_size;
+    arr = create_array(arr_size);
+
+    std::cout << "Original array: ";
+    print_array(arr, arr_size);
+    std::cout << std::endl;
+
+    int sum = 0;
+
+    inverse_array(arr_size, arr);
+
+    std::cout << "New array: ";
+    print_array(arr, arr_size);
+    std::cout << std::endl;
+
+    decreate_array(arr);
+
+    return 0;
+}
